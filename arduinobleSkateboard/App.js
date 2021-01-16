@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Button, View, SafeAreaView, Text, Alert } from 'react-native';
 import Slider from '@react-native-community/slider';
 import {useState} from "react";
+import ble from "./ble";
 
 
 const Separator = () => (
@@ -17,6 +18,10 @@ const App = () => {
    
   }
 
+  bleHandler = () => {
+    //Calling a function of other class (without arguments)
+    new ble().componentWillMount();
+  };
   onButtonPress = () => {
     // for(let i = {sliderValue}; i >=0; i--) {
     //           (sliderValue) => setSliderValue(i)
@@ -101,6 +106,14 @@ const App = () => {
           onPress={
             (sliderValue) => setSliderValue(0)
           }
+        />
+        <Button
+          disabled = {!isUnlocked}
+          title="Connected"
+          onPress={
+            this.bleHandler
+          }
+
         />
       </View>
     </View>
